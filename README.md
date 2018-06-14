@@ -1,5 +1,5 @@
 # quick-script
-Using win32clipboard module to automate a boringtask
+Using win32clipboard module to automate a # boring task.
 
 A task I have to do at work involves getting 2 numeric values from a program (Peaksimple), and subtracting them from 100 to get a 
 third value, which then has to be entered back into Peaksimple. This has to be done over and over again. Originally, I'd have to 
