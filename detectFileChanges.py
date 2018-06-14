@@ -38,7 +38,7 @@ while 1:
     # If the file has changed, begin the small amt. of processing on the data
     if fileChanged:
         # Open log file, read it into 'lines'
-        file = open(r'C:\Users\Lab\James\CO2RES')
+        file = open(PATHTOLOGFILE)
         lines = file.readlines()
         # Get CO2 value as a float
         co2Line = lines[21].split()
