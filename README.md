@@ -7,5 +7,4 @@ do it manually by opening up the calculator for each run and calculating the val
 all that nonsense, I wrote this script.
 
 Peaksimple dumps the generated data into a log file when it's done with the run. This script polls the file's directory every 0.1 seconds. The polling is done using os.stat(), which returns the time of the last edit of the file.
-If the file was updated, some processing is done on the data (100 - x - y = z). Z is then copied to the Windows clipboard using 
-win32clipboard.SetClipboardText(). I can then paste the value into Peaksimple without having to do anything. Little time savers like this is one of the main reasons why I love python so much.
+If the file was updated, some processing is done on the data (100 - x - y = z). Z is then copied to the Windows clipboard using win32clipboard.SetClipboardText(). I can then paste the value into Peaksimple without having to do anything.
