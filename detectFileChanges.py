@@ -13,6 +13,8 @@ composition to 100%. """
 def copy_str_to_clipboard(string):
     # Open the clipboard for examination, e.g. to read or write to it
     win32clipboard.OpenClipboard()
+    # Clear the clipboard
+    win32clipboard.EmptyClipboard()
     # Set the clipboard contents to 'string'. 13 is the encoding (unicode). Can now
     # paste the data right into Peaksimple
     success = win32clipboard.SetClipboardText(string, 13)
@@ -40,19 +42,24 @@ while 1:
         # Open log file, read it into 'lines'
         file = open(PATHTOLOGFILE)
         lines = file.readlines()
-        # Get CO2 value as a float
-        co2Line = lines[21].split()
-        co2Line2 = co2Line[2].split(',')
-        co2Value = float(co2Line2[3])
-        # Get O2 value as a float
-        o2Line = lines[22].split()
-        o2Line2 = o2Line[1].split(',')
-        o2Value = float(o2Line2[6])
+        try:
+            # Get CO2 value as a float
+            co2Line = lines[21].split()
+            co2Line2 = co2Line[2].split(',')
+            co2Value = float(co2Line2[3])
+            # Get O2 value as a float
+            o2Line = lines[22].split()
+            o2Line2 = o2Line[1].split(',')
+            #print(o2Line2)
+            o2Value = float(o2Line2[6])
 
-        # Calculate what the N2 value should be
-        n2Val = str(round(100.0000 - co2Value - o2Value, 4))
-        print(f"Calibrate N2 to: {n2Val} \nCopied to Clipboard!")
+            # Calculate what the N2 value should be
+            n2Val = str(round(100.0000 - co2Value - o2Value, 4))
+            print(f"Calibrate N2 to: {n2Val}")
 
-        # Do the copying
-        copy_str_to_clipboard(n2Val)
+            # Do the copying
+            copy_str_to_clipboard(n2Val)
+
+        except IndexError:
+            print("List index out of range. Is there a junk peak?")
 
